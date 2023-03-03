@@ -1,0 +1,130 @@
+*{margin: 0;padding: 0;box-sizing: border-box;font-family: 'Ubuntu', sans-serif;}
+
+body {
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 10px;
+    background: url(../img/city.jpg)no-repeat 0 -100px;
+}
+
+#container {
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.titulo {
+    text-align: center;
+}
+
+.dv-inputs {
+    width: 100%;
+    margin: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+#input-pesquisar {
+    width: 70%;
+    height: 28px;
+    padding-left: 8px;
+    font-size: 17px;
+    font-weight: bolder;
+    border-radius: 10px;
+    background-color: transparent;
+}
+
+#btn-pesquisar {
+    height: 28px;
+    padding: 2px 6px;
+    border-radius: 14px;
+    cursor: pointer;
+    margin-left: 4px;
+}
+
+.dv-dados {
+    border-top: 2px solid black;
+    background-color: rgba(0, 0, 0, 0.075);
+}
+
+.info-cidade {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.iconC {
+    margin-top: 6px;
+    width: 100%;
+    text-align: center;
+}
+
+.dv-temperatura {
+    width: 50%;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    font-size: 2rem;
+}
+
+.temperatura {
+    font-size: 2.8rem;
+}
+
+.dv-descricao {
+    width: 50%;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    font-size: 1.8rem;
+    text-transform: capitalize;
+}
+
+#img-clima {
+    height: 5.2rem;
+    width: 5.2rem;
+    font-size: 16px;
+}
+
+.dv-umidade, .dv-vel-vento {
+    width: 50%;
+    text-align: center;
+    padding: 2px;
+    background-color: #146cde9d;
+}
+
+.esconder {
+    display: none;
+}
+
+#containerErro {
+    text-align: center;
+    border-top: 2px solid black;
+    background-color: rgba(103, 103, 224, 0.671);
+}
+
+#loader {
+    height: 100px;
+    font-size: 2.2rem;
+    text-align: center;
+    line-height: 100px;
+    background-color: rgba(0, 0, 0, 0.075);
+}
+
+#loader i {
+    animation: rotate 1.5s linear infinite;
+}
+  
+@keyframes rotate {
+    to {
+        transform: rotate(360deg);
+    }
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previsão Do Tempo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/responsivo.css">
+
+</head>
+<body>
+    
+    <section id="container">
+        <h1 class="titulo">Procure o Clima De Qualquer Cidade</h1>
+
+        <section class="dv-inputs">
+            <input type="search" name="input-pesquisar" id="input-pesquisar">
+            <button id="btn-pesquisar"><i class="fa-solid fa-magnifying-glass"></i> Pesquisar</button>
+        </section>
+
+        <div id="loader" class="esconder">
+            <i class="fa-solid fa-spinner"></i>
+        </div>
+
+        <div id="containerErro" class="esconder">
+            <h2>Não foi possível encontrar o clima de uma cidade com este nome.</h2>
+        </div>
+
+        <section class="dv-dados esconder">
+
+            <section class="info-cidade">
+
+                <h2 class="dv-temperatura">
+                    <i class="fa-solid fa-location-dot iconC">
+                        <span class="cidade"></span>
+                    </i>
+                    <span class="temperatura"></span>
+                </h2>
+
+                <h3 class="dv-descricao">
+                    <img id="img-clima" alt="Condições Climaticas Da Cidade">
+                    <span class="descricao"></span>
+                </h3>
+
+                <h2 class="dv-umidade">
+                    <i class="fa-solid fa-droplet"></i> Umidade: 
+                    <span class="umidade"></span>%
+                </h2>
+
+                <h2 class="dv-vel-vento">
+                    <i class="fa-solid fa-wind"></i>
+                    Vel-Vento: <span class="vel-vento"></span>km/h
+                </h2>
+            </section>
+
+        </section>
+
+    </section>
+
+    <script src="./javascript/script.js"></script>
+</body>
+</html>
