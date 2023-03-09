@@ -4,88 +4,64 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projeto Cep Api</title>
+    <title>Previsão Do Tempo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/responsivo.css">
+
 </head>
 <body>
-    <header>
-        <h1>Projeto Cep Api</h1>
-        <nav id="nav-menu">
-            <h4 id="auto-complete-cep" class="menu-item ativo">Formulário Com Auto Complete Atraves Do Cep</h4>
-            <h4 id="buscar-cep" class="menu-item">Consulte Os Dados Do Cep De Interesse</h4>
-        </nav>
-    </header>
-    <main>
-        <section id="dv-auto-complete-cep">
-            <form id="form-cep">
-                <h1>Formulário</h1>
-
-                <div class="container">
-                    <div class="container-input-cep container-input">
-                        <label for="input-cep-form">Cep:</label>
-                        <input type="text" name="input-cep-form" class="ipt" id="input-cep-form" maxlength="9" minlength="9" required>
-                    </div>
     
-                    <div class="container-input-cidade container-input">
-                        <label for="input-cidade">Cidade:</label>
-                        <input type="text" name="input-cidade" class="ipt" id="input-cidade">
-                    </div>
-    
-                    <div class="container-input-estado container-input">
-                        <label for="input-estado">Estado:</label>
-                        <input type="text" name="input-estado" class="ipt" id="input-estado">
-                    </div>
-                </div>
+    <section id="container">
+        <h1 class="titulo">Procure o Clima De Qualquer Cidade</h1>
 
-                <div class="container-input-endereco">
-                    <label for="input-endereco">Endereço:</label>
-                    <input type="text" name="input-endereco" class="ipt" id="input-endereco">
-                </div>
-
-                <div class="container">
-                    <div class="container-input-bairro container-input">
-                        <label for="input-bairro">Bairro:</label>
-                        <input type="text" name="input-bairro" class="ipt" id="input-bairro">
-                    </div>
-    
-                    <div class="container-input-ibge container-input">
-                        <label for="input-ibge">IBGE:</label>
-                        <input type="text" name="input-ibge" class="ipt" id="input-ibge">
-                    </div>
-                </div>
-
-                <input type="submit" id="btn-enviar" value="Enviar">
-            </form>
+        <section class="dv-inputs">
+            <input type="search" name="input-pesquisar" id="input-pesquisar">
+            <button id="btn-pesquisar"><i class="fa-solid fa-magnifying-glass"></i> Pesquisar</button>
         </section>
 
-        <section id="dv-buscar-dados-cep" class="desabilitar">
+        <div id="loader" class="esconder">
+            <i class="fa-solid fa-spinner"></i>
+        </div>
 
-            <div id="form-buscar-cep">
-                <label for="input-cep">Digite o número do seu cep para receber seus dados.</label>
-                <input type="text" name="input-cep" id="input-cep" maxlength="8" minlength="8" required>
-                
-                <input type="button" id="btn-consulta" value="Consultar">
-            </div>
+        <div id="containerErro" class="esconder">
+            <h2 class="itemErro">Não foi possível encontrar o clima da cidade com este nome.</h2>
+        </div>
 
-            <div id="dv-dados">
-                <h4>Cep: <span class="cep"></span></h4>
-                <h4>Endereço: <span class="endereco"></span></h4>
-                <h4>Bairro: <span class="bairro"></span></h4>
-                <h4>Cidade: <span class="cidade"></span></h4>
-                <h4>IBGE Cidade: <span class="ibge"></span></h4>
-                <h4>Estado: <span class="estado"></span></h4>
-            </div>
+        <section class="dv-dados esconder">
+
+            <section class="info-cidade">
+
+                <h2 class="dv-temperatura">
+                    <i class="fa-solid fa-location-dot iconC">
+                        <span class="cidade"></span>
+                    </i>
+                    <span class="temperatura"></span>
+                </h2>
+
+                <h3 class="dv-descricao">
+                    <img id="img-clima" alt="Condições Climaticas Da Cidade">
+                    <span class="descricao"></span>
+                </h3>
+
+                <h2 class="dv-umidade">
+                    <i class="fa-solid fa-droplet"></i> Umidade: 
+                    <span class="umidade"></span>%
+                </h2>
+
+                <h2 class="dv-vel-vento">
+                    <i class="fa-solid fa-wind"></i>
+                    Vel-Vento: <span class="vel-vento"></span>km/h
+                </h2>
+            </section>
 
         </section>
-    </main>
 
-    <footer>
-        <h3>Jonathas Dias</h3>
-    </footer>
-    
+    </section>
+
     <script src="./javascript/script.js"></script>
-    <script type="module" src="./javascript/consultarCep.js"></script>
-    <script type="module" src="./javascript/formulario.js"></script>
 </body>
 </html>

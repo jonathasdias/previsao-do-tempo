@@ -1,23 +1,80 @@
-let main = document.querySelector('main');
-let dv_autoComplete = document.getElementById('dv-auto-complete-cep');
-let dv_buscarDados = document.getElementById('dv-buscar-dados-cep');
-let menuItems = document.querySelectorAll('.menu-item');
+let keyApi =  "";
 
-menuItems.forEach((item)=>{
-    item.addEventListener('click', ()=>{
-        for (let i = 0; i < menuItems.length; i++) {
-            menuItems[i].classList.remove('ativo');
+let loader = document.getElementById('loader');
+let containerErro = document.getElementById('containerErro');
+let itemErro = document.querySelector('.itemErro');
+let dv_dados = document.querySelector('.dv-dados');
+let inputPesquisar = document.getElementById('input-pesquisar');
+let btnPesquisar = document.getElementById('btn-pesquisar');
+let cidadeElement = document.querySelector('.cidade');
+let temperaturaElement = document.querySelector('.temperatura');
+let descricaoElement = document.querySelector('.descricao');
+let imgClima = document.getElementById('img-clima')
+let umidadeElement = document.querySelector('.umidade');
+let vel_ventoElement = document.querySelector('.vel-vento');
+
+function toggleLoader(){
+    loader.classList.toggle('esconder')
+}
+
+async function pegarDadosApi() {
+    btnPesquisar.style.display = 'none'
+    dv_dados.classList.add('esconder')
+    containerErro.classList.add('esconder')
+    toggleLoader()
+
+    let cidade = inputPesquisar.value
+
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cidade}&units=metric&appid=${keyApi}&lang=pt_br`
+
+    let res = await fetch(apiUrl)
+    let resJson = await res.json()
+
+    toggleLoader()
+
+    btnPesquisar.style.display = 'inline-block'
+
+    return resJson
+};
+
+async function tratamentoDados() {
+    let resJson = await pegarDadosApi();
+
+    try {
+        cidadeElement.innerHTML = resJson.name
+        temperaturaElement.innerHTML = parseInt(resJson.main.temp) + "&deg;C"
+        descricaoElement.innerHTML = resJson.weather[0].description
+        imgClima.setAttribute('src',`http://openweathermap.org/img/wn/${resJson.weather[0].icon}.png`)
+        umidadeElement.innerHTML = resJson.main.humidity
+        vel_ventoElement.innerHTML = resJson.wind.speed
+
+        dv_dados.classList.remove('esconder')
+
+        inputPesquisar.value = ''
+        inputPesquisar.focus()
+        
+    } catch (error) {
+        containerErro.classList.remove('esconder')
+
+        if(resJson.cod == '400'){
+            itemErro.innerHTML = 'Nada para geocodificar'
+        }else if(resJson.cod == '404'){
+            itemErro.innerHTML = 'Cidade não encontrada'
         }
-        item.classList.add('ativo')
+        
+    }
+}
 
-        if(item.id == 'auto-complete-cep'){
-            dv_autoComplete.classList.remove('desabilitar')
-            dv_buscarDados.classList.add('desabilitar')
+function mostarDadosCidade() {
+    tratamentoDados()
+};
 
-        }else if(item.id == 'buscar-cep'){
-            dv_buscarDados.classList.remove('desabilitar')
-            dv_autoComplete.classList.add('desabilitar')
+btnPesquisar.addEventListener('click', ()=>{
+    mostarDadosCidade()
+});
 
-        }
-    });
+inputPesquisar.addEventListener('keyup', (e)=>{
+    if(e.code === "Enter"){
+        mostarDadosCidade()
+    }
 });
